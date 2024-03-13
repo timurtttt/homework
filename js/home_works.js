@@ -14,18 +14,60 @@
 //   }
 // });
 
-// let divchild = document.getElementById("child_block");
+const childBlock = document.querySelector('.child_block');
+let distanceX = 0;
+let distanceY = 0;
+let directionX = 1; 
+let directionY = 0; 
 
-// const childBlock = document.querySelector(".child_block");
+function animate() {
+    if (distanceX >= 447 && directionX === 1) {
+        directionX = 0;
+        directionY = 1;
+    } else if (distanceY >= 447 && directionY === 1) {
+        directionX = -1;
+        directionY = 0;
+    } else if (distanceX <= 0 && directionX === -1) {
+        directionX = 0;
+        directionY = -1;
+    } else if (distanceY <= 0 && directionY === -1) {
+        directionX = 1;
+        directionY = 0;
+    }
 
-// let positionChild = 0;
+    distanceX += directionX * 4;
+    distanceY += directionY * 4;
 
-// const moveBlock = () => {
-//   if (positionChild < 450) {
-//     positionChild++;
-//     childBlock.style.left = `${positionChild}px`;
+    childBlock.style.left = distanceX + 'px';
+    childBlock.style.top = distanceY + 'px';
 
-//     requestAnimationFrame(moveBlock);
-//   }
-// };
-// moveBlock();
+    requestAnimationFrame(animate);
+}
+
+requestAnimationFrame(animate);
+
+// let start = document.getElementById("start");
+// let stopp = document.getElementById("stop");
+// let reset = document.getElementById("reset");
+// let seconds = document.getElementById("seconds");
+// let count = 0;
+
+// function Start() {
+//   setInterval(() => {
+//     count++;
+//     seconds.innerHTML = count;
+//   }, 1000);
+// }
+
+// function Stop() {
+//   setInterval(() => {
+//     clearInterval(seconds.innerHTML);
+//   });
+// }
+
+// function Reset() {
+//   seconds.innerHTML = "0";
+// }
+// stopp.onclick = Stop;
+// start.onclick = Start;
+// reset.onclick = Reset;
